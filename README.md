@@ -105,5 +105,29 @@ LIMIT 10;
 |Software & Services|46544.00|
 |Media|23017.00|
 
-- The highest is Electrical Equipment and Machinery.
+- Electrical Equipment and Machinery: This industry has the overwhelmingly largest total PCF, making it the most significant contributor in this dataset.
+- Automobiles & Components: This industry is the second-highest contributor, though its total PCF is considerably lower than that of Electrical Equipment and Machinery.
+- Materials: This industry ranks third in total PCF.
+4. What are the companies with the highest contribution to carbon emissions?
+```SQL
+SELECT  companies.company_name,
+		ROUND(SUM(pe.carbon_footprint_pcf),2) AS total_PCF
+FROM product_emissions pe
+JOIN companies ON pe.company_id = companies.id
+GROUP BY companies.company_name
+ORDER BY total_PCF DESC
+LIMIT 10;
+```
+|company_name|total_PCF|
+|------------|---------|
+|"Gamesa Corporación Tecnológica, S.A."|9778464.00|
+|Daimler AG|1594300.00|
+|Volkswagen AG|655960.00|
+|"Mitsubishi Gas Chemical Company, Inc."|212016.00|
+|"Hino Motors, Ltd."|191687.00|
+|Arcelor Mittal|167007.00|
+|Weg S/A|160655.00|
+|General Motors Company|137007.00|
+|"Lexmark International, Inc."|132012.00|
+|"Daikin Industries, Ltd."|105600.00|
 
