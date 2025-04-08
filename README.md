@@ -156,3 +156,28 @@ LIMIT 10;
 |Netherlands|70417.00|
 |Taiwan|62875.00|
 |India|24574.00|
+- Spain has the highest total PCF bya large portion of the high emissions products are produced within Spain, which is consistent with the high PCF from Gamesa Corporación Tecnológica, S.A.
+- European Countries:
+Germany and Luxembourg are also among the countries with high total PCFs.
+The Netherlands is also within the listed countries.
+- India has the lowest total PCF of the countries listed.
+6. What is the trend of carbon footprints (PCFs) over the years?
+```SQL
+SELECT
+    year,
+    ROUND(SUM(carbon_footprint_pcf),2) AS TOTAL_PCF
+FROM
+    product_emissions
+GROUP BY
+    year
+ORDER BY
+     year DESC;
+```
+|year|TOTAL_PCF|
+|----|---------|
+|2017|340271.00|
+|2016|1640182.00|
+|2015|10840415.00|
+|2014|624226.00|
+|2013|503857.00|
+
