@@ -78,4 +78,32 @@ LIMIT 10;
 |Mercedes-Benz GLE (GLE 500 4MATIC)|Automobiles & Components|91000.00|
 |Mercedes-Benz S-Class (S 500)|Automobiles & Components|85000.00|
 |Mercedes-Benz SL (SL 350)|Automobiles & Components|72000.00|
+- The wind turbines, all categorized under "Electrical Equipment and Machinery," have the highest average PCFs.
+- TAutomobiles & Components are a significant contributor to carbon emissions.   
+The data highlights the need for automakers to continue developing and implementing strategies to reduce their carbon footprint.
+- "Materials" includes the retaining wall structure and TCDE. These products have moderate PCFs compared to the wind turbines but are still significant.
+3. What are the industries with the highest contribution to carbon emissions?
+```SQL
+SELECT  ig.industry_group,
+		ROUND(SUM(pe.carbon_footprint_pcf),2) AS total_PCF
+FROM product_emissions pe
+JOIN industry_groups ig ON pe.industry_group_id = ig.id
+GROUP BY ig.industry_group
+ORDER BY total_PCF DESC
+LIMIT 10;
+```
+|industry_group|total_PCF|
+|--------------|---------|
+|Electrical Equipment and Machinery|9801558.00|
+|Automobiles & Components|2582264.00|
+|Materials|577595.00|
+|Technology Hardware & Equipment|363776.00|
+|Capital Goods|258712.00|
+|"Food, Beverage & Tobacco"|111131.00|
+|"Pharmaceuticals, Biotechnology & Life Sciences"|72486.00|
+|Chemicals|62369.00|
+|Software & Services|46544.00|
+|Media|23017.00|
+
+- The highest is Electrical Equipment and Machinery.
 
