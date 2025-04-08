@@ -29,7 +29,7 @@ Table 'industry_groups'
 
 
 ### 1.2 Cleaning data
-Which products contribute the most to carbon emissions?
+1. Which products contribute the most to carbon emissions?
 ```SQL
 SELECT product_name, 
 		ROUND(AVG(carbon_footprint_pcf),2) AS Average_PCF
@@ -50,4 +50,32 @@ LIMIT 10;
 |Mercedes-Benz GLE (GLE 500 4MATIC)|91000.00|
 |Mercedes-Benz S-Class (S 500)|85000.00|
 |Mercedes-Benz SL (SL 350)|72000.00|
+
+-	Wind turbines have the highest PCFs
+-	Construction Materials: Steel-intensive construction has a considerable carbon footprint.
+-	Even within the automotive category, these Mercedes-Benz models have relatively high PCFs.
+2. What are the industry groups of these products?
+```SQL
+
+SELECT	pe.product_name,
+		ig.industry_group,
+		ROUND(AVG(pe.carbon_footprint_pcf),2) AS Average_PCF
+FROM product_emissions pe
+JOIN industry_groups ig ON ig.id = pe.industry_group_id
+GROUP BY pe.product_name
+ORDER BY pe.carbon_footprint_pcf DESC
+LIMIT 10;
+```
+|product_name|industry_group|Average_PCF|
+|------------|--------------|-----------|
+|Wind Turbine G128 5 Megawats|Electrical Equipment and Machinery|3718044.00|
+|Wind Turbine G132 5 Megawats|Electrical Equipment and Machinery|3276187.00|
+|Wind Turbine G114 2 Megawats|Electrical Equipment and Machinery|1532608.00|
+|Wind Turbine G90 2 Megawats|Electrical Equipment and Machinery|1251625.00|
+|Land Cruiser Prado. FJ Cruiser. Dyna trucks. Toyoace.IMV def unit.|Automobiles & Components|191687.00|
+|Retaining wall structure with a main wall (sheet pile): 136 tonnes of steel sheet piles and 4 tonnes of tierods per 100 meter wall|Materials|167000.00|
+|TCDE|Materials|99075.00|
+|Mercedes-Benz GLE (GLE 500 4MATIC)|Automobiles & Components|91000.00|
+|Mercedes-Benz S-Class (S 500)|Automobiles & Components|85000.00|
+|Mercedes-Benz SL (SL 350)|Automobiles & Components|72000.00|
 
