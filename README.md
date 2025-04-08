@@ -130,4 +130,29 @@ LIMIT 10;
 |General Motors Company|137007.00|
 |"Lexmark International, Inc."|132012.00|
 |"Daikin Industries, Ltd."|105600.00|
-
+- Gamesa Corporación Tecnológica, S.A.: This company has the highest contribution by a very large margin (9,778,464.00).
+- Daimler AG: This automotive manufacturer has the second-highest contribution (1,594,300.00).
+- Volkswagen AG: Another major automotive company, with the third-highest contribution (655,960.00).
+It's clear that Gamesa stands out as the company with the most significant carbon footprint in this list.
+5. What are the countries with the highest contribution to carbon emissions?
+```SQL
+SELECT  c.country_name,
+		ROUND(SUM(pe.carbon_footprint_pcf),2) AS total_PCF
+FROM product_emissions pe
+JOIN countries c ON pe.country_id = c.id
+GROUP BY c.country_name
+ORDER BY total_PCF DESC
+LIMIT 10;
+```
+|country_name|total_PCF|
+|------------|---------|
+|Spain|9786130.00|
+|Germany|2251225.00|
+|Japan|653237.00|
+|USA|518381.00|
+|South Korea|186965.00|
+|Brazil|169337.00|
+|Luxembourg|167007.00|
+|Netherlands|70417.00|
+|Taiwan|62875.00|
+|India|24574.00|
