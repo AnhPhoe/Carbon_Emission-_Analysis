@@ -233,4 +233,5 @@ ORDER BY
 |Technology Hardware & Equipment|61100.00|167361.00|106157.00|1566.00|27592.00|
 |Capital Goods|60190.00|93699.00|3505.00|6369.00|94949.00|
 |Materials|200513.00|75678.00|0.00|88267.00|213137.00|
-
+![image](https://github.com/user-attachments/assets/78c3001f-446c-4979-ad41-471651472c46)
+- The "Chemicals" industry group has a significantly higher emission value in 2015 (dark blue bar) compared to all other industries and years. 
