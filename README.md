@@ -180,4 +180,25 @@ ORDER BY
 |2015|10840415.00|
 |2014|624226.00|
 |2013|503857.00|
+![image](https://github.com/user-attachments/assets/85c5fa56-2459-493c-9661-8582f3fa9947)
+- Trend: The graph shows a dramatic spike in carbon footprint in 2015, with relatively low levels in the surrounding years.
+7. Which industry groups has demonstrated the most notable decrease in carbon footprints (PCFs) over time?
+```SQL
+SELECT
+    ig.industry_group AS Industry_Group,
+    ROUND(SUM(CASE WHEN pe.year = 2013 THEN pe.carbon_footprint_pcf ELSE 0 END), 2) AS `2013_Emission`,
+    ROUND(SUM(CASE WHEN pe.year = 2014 THEN pe.carbon_footprint_pcf ELSE 0 END), 2) AS `2014_Emission`,
+    ROUND(SUM(CASE WHEN pe.year = 2015 THEN pe.carbon_footprint_pcf ELSE 0 END), 2) AS `2015_Emission`,
+    ROUND(SUM(CASE WHEN pe.year = 2016 THEN pe.carbon_footprint_pcf ELSE 0 END), 2) AS `2016_Emission`,
+    ROUND(SUM(CASE WHEN pe.year = 2017 THEN pe.carbon_footprint_pcf ELSE 0 END), 2) AS `2017_Emission`
+FROM product_emissions pe
+LEFT JOIN industry_groups AS ig ON ig.id = pe.industry_group_id
+GROUP BY ig.industry_group
+ORDER BY
+    ROUND(SUM(CASE WHEN pe.year = 2017 THEN pe.carbon_footprint_pcf ELSE 0 END), 2),
+    ROUND(SUM(CASE WHEN pe.year = 2016 THEN pe.carbon_footprint_pcf ELSE 0 END), 2),
+    ROUND(SUM(CASE WHEN pe.year = 2015 THEN pe.carbon_footprint_pcf ELSE 0 END), 2),
+    ROUND(SUM(CASE WHEN pe.year = 2014 THEN pe.carbon_footprint_pcf ELSE 0 END), 2),
+    ROUND(SUM(CASE WHEN pe.year = 2013 THEN pe.carbon_footprint_pcf ELSE 0 END), 2);
+```
 
